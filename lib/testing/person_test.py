@@ -19,24 +19,23 @@ class TestPerson:
         sys.stdout = captured_out
         Person(name="", job="Sales")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Name must be string between 1 and 25 characters.\n")
+        assert(captured_out.getvalue() == "Name must be a string between 1 and 25 characters.\n")
 
     def test_name_string(self):
         '''prints "Name must be string between 1 and 25 characters." if not string.'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        Person(name=123, job='Sales')
+        Person(name=123, job="Sales")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Name must be string between 1 and 25 characters.\n")
+        assert(captured_out.getvalue() == "Name must be a string between 1 and 25 characters.\n")
 
     def test_name_under_25(self):
         '''prints "Name must be string between 1 and 25 characters." if string over 25 characters.'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        Person(name="What do Persons do on their day off? Can't lie around - that's their job.",
-               job='Sales')
+        Person(name="What do Persons do on their day off? Can't lie around - that's their job.", job="Sales")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Name must be string between 1 and 25 characters.\n")
+        assert(captured_out.getvalue() == "Name must be a string between 1 and 25 characters.\n")
 
     def test_valid_name(self):
         '''saves name if string between 1 and 25 characters.'''
